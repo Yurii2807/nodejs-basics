@@ -1,7 +1,6 @@
-// src/models/contact.js
-const mongoose = require('mongoose');
+import { model, Schema } from 'mongoose';
 
-const contactSchema = new mongoose.Schema(
+const contactsSchema = new Schema(
   {
     name: {
       type: String,
@@ -13,6 +12,7 @@ const contactSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+      required: false,
     },
     isFavourite: {
       type: Boolean,
@@ -20,14 +20,14 @@ const contactSchema = new mongoose.Schema(
     },
     contactType: {
       type: String,
+      required: true,
       enum: ['work', 'home', 'personal'],
       default: 'personal',
-      required: true,
     },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    versionKey: false,
+  },
 );
-
-const Contact = mongoose.model('Contact', contactSchema);
-
-module.exports = Contact;
+export const ContactsCollection = model('contacts', contactsSchema);
