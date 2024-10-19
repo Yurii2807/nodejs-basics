@@ -18,4 +18,5 @@ const getContactById = async (id) => {
   return await contact.findById(id);
 };
 
-module.exports = { getAllContacts, getContactById };
+// module.exports = { getAllContacts, getContactById };
+export default getAllContacts;
