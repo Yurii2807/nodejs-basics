@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import contact from '../db/models/contact.js';
+import contact from '../db/models/contact.js'; // Виправлений імпорт
 
 dotenv.config();
 
@@ -19,9 +19,8 @@ const MONGODB_PASSWORD = env('MONGODB_PASSWORD');
 const MONGODB_URL = env('MONGODB_URL');
 const MONGODB_DB = env('MONGODB_DB');
 
-// Функція для отримання всіх контактів
 export const getAllContacts = async () => {
-  return await contact.find(); // Наприклад, якщо ви використовуєте Mongoose
+  return await contact.find();
 };
 
 export const getContactById = async (id) => {
