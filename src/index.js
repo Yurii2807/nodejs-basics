@@ -1,7 +1,12 @@
-const setupServer = require('./server');
-const initMongoConnection = require('./db/initMongoConnection');
+import setupServer from './server.js'; // Імпортуємо як ES модуль
+import { initMongoConnection } from './db/initMongoConnection.js';
 
-(async () => {
-  await initMongoConnection();
-  setupServer();
-})();
+const startApp = async () => {
+  await initMongoConnection(); // Чекаємо на підключення до бази
+  setupServer(); // Запускаємо сервер
+};
+
+startApp().catch((err) => {
+  console.error('Failed to start the app:', err);
+  process.exit(1);
+});
