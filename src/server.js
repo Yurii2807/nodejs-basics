@@ -1,25 +1,12 @@
 import express from 'express';
-import cors from 'cors';
-import pino from 'pino';
-import { getContacts } from './utils/env.js'; // Переконайтеся у правильності шляху
+import { getAllContacts } from './services/contacts.js';
 
-const logger = pino();
+const app = express();
 
-const setupServer = () => {
-  const app = express();
-  app.use(cors());
-  app.use(express.json());
+app.get('/contacts', getAllContacts);
 
-  app.get('/contacts', getContacts); // Реєстрація роута
+const PORT = process.env.PORT || 3000;
 
-  app.use((req, res) => {
-    res.status(404).json({ message: 'Not found' });
-  });
-
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-};
-
-export default setupServer;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
