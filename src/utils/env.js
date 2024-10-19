@@ -1,32 +1,16 @@
-import dotenv from 'dotenv';
+import { getAllContacts } from '../services/contacts.js';
 
-dotenv.config();
-
-export default function env(name, defaultValue) {
-  const value = process.env[name];
-
-  if (value) return value;
-
-  if (defaultValue) return defaultValue;
-
-  throw new Error(`Missing: process.env['${name}'].`);
-}
-const { getContactById } = require('../services/contacts');
-
-const getContact = async (req, res) => {
+export const getContacts = async (req, res) => {
   try {
-    const contact = await getContactById(req.params.contactId);
-    if (!contact) {
-      return res.status(404).json({ message: 'Contact not found' });
-    }
+    const contacts = await getAllContacts();
+    console.log('Fetched contacts:', contacts); // Лог для перевірки
     res.status(200).json({
       status: 200,
-      message: `Successfully found contact with id ${req.params.contactId}!`,
-      data: contact,
+      message: 'Successfully found contacts!',
+      data: contacts,
     });
   } catch (error) {
+    console.error('Error fetching contacts:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
-
-module.exports = { getContacts, getContact };
