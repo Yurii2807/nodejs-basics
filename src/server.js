@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllContacts } from '../services/contacts.js';
+import { getAllContacts } from './services/contacts';
 
 const app = express();
 
