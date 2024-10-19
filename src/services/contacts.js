@@ -1,22 +1,31 @@
-import getAllContacts from '../services/contacts.js';
+import dotenv from 'dotenv';
+import contact from '../models/contact.js';
 
-export const getAllContacts = async (req, res) => {
-  try {
-    const contacts = await getAllContacts();
-    res.status(200).json({
-      status: 200,
-      message: 'Successfully found contacts!',
-      data: contacts,
-    });
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
+dotenv.config();
+
+export function env(name, defaultValue) {
+  const value = process.env[name];
+
+  if (value) return value;
+
+  if (defaultValue) return defaultValue;
+
+  throw new Error(`Missing: process.env['${name}'].`);
+}
+
+const PORT = env('PORT', 3000);
+const MONGODB_USER = env('MONGODB_USER');
+const MONGODB_PASSWORD = env('MONGODB_PASSWORD');
+const MONGODB_URL = env('MONGODB_URL');
+const MONGODB_DB = env('MONGODB_DB');
+
+// Функція для отримання всіх контактів
+export const getAllContacts = async () => {
+  return await contact.find(); // Наприклад, якщо ви використовуєте Mongoose
 };
 
-module.exports = { getContacts };
-const getContactById = async (id) => {
+export const getContactById = async (id) => {
   return await contact.findById(id);
 };
 
-module.exports = { getAllContacts, getContactById };
-export default getAllContacts;
+export { PORT, MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DB };
