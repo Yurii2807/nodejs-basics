@@ -1,5 +1,7 @@
 import setupServer from './server.js'; // Імпортуємо як ES модуль
 import { initMongoConnection } from './db/initMongoConnection.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const startApp = async () => {
   await initMongoConnection(); // Чекаємо на підключення до бази
