@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import pino from 'pino';
-import { getContacts } from './utils/env'; // Переконайтеся у правильності шляху
+import { getContacts } from './utils/env.js'; // Переконайтеся у правильності шляху
 
 const logger = pino();
 

@@ -1,6 +1,6 @@
-const { getAllContacts } = require('../services/contacts');
+import getAllContacts from '../services/contacts.js';
 
-const getContacts = async (req, res) => {
+const getAllContacts = async (req, res) => {
   try {
     const contacts = await getAllContacts();
     res.status(200).json({
