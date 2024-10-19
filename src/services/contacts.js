@@ -27,4 +27,6 @@ export const getContactById = async (id) => {
   return await contact.findById(id);
 };
 
-export { PORT, MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DB };
+// export { PORT, MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DB };
+
+export default contact;
