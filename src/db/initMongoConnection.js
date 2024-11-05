@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+// src/db/initMongoConnection.js
 
 import { env } from '../utils/env.js';
 

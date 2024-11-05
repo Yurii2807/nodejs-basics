@@ -1,3 +1,5 @@
+// src/utils/parseFilterParams.js
+
 const parseType = (type) => {
   const isString = typeof type === 'string';
   if (!isString) return;
