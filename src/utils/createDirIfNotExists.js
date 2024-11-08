@@ -1,4 +1,4 @@
-// src/utils/createDirlfNotExists.js
+// src/utils/createDirIfNotExists.js
 
 import fs from 'node:fs/promises';
 
