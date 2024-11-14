@@ -1,8 +1,8 @@
 tags:
   - Contacts
-summary: Get list of contacts
-operationId: getAllContacts
-description: 'Get list of users with this endpoint'
+summary: Get contacts
+operationId: getContacts
+description: 'Get all contacts'
 security:
   - bearerAuth: []
 parameters:
@@ -15,13 +15,13 @@ parameters:
     name: perPage
     schema:
       type: integer
-      example: 4
+    example: 10
   - in: query
     name: sortBy
     schema:
       type: string
       example: 'name'
-    description: "All contact's fields can be mentioned. Default value - _id"
+    description: 'Sorting, default by _id'
   - in: query
     name: sortOrder
     schema:
@@ -29,18 +29,19 @@ parameters:
       enum: ['asc', 'desc']
       example: 'asc'
   - in: query
-    name: type
-    schema:
-      type: string
-      enum: [work, home, personal]
-  - in: query
     name: isFavourite
     schema:
+      type: boolean
+      example: true
+  - in: query
+    name: contactType
+    schema:
       type: string
-      enum: ['true', 'false']
+      enum: ['work', 'home', 'personal']
+      example: 'personal'
 responses:
   '200':
-    description: Successfully found contacts!
+    description: 'Successfully found contacts!'
     content:
       application/json:
         schema:
@@ -55,7 +56,7 @@ responses:
               example: 200
             message:
               type: string
-              example: Successfully found contacts!
+              example: 'Successfully found contacts!'
             data:
               type: object
               required:
@@ -89,9 +90,5 @@ responses:
                 hasPreviousPage:
                   type: boolean
                   example: true
-  '400':
-    $ref: '../../components/responses/400.yaml'
   '401':
     $ref: '../../components/responses/401.yaml'
-  '500':
-    $ref: '../../components/responses/500.yaml'
