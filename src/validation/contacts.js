@@ -39,6 +39,9 @@ export const createContactSchema = Joi.object({
   userId: Joi.string().messages({
     'string.base': 'userId should be a string',
   }),
+  photo: Joi.string().allow(null).messages({
+    'string.base': 'Photo should be a string',
+  }), // Додаємо поле photo
 });
 
 export const updateContactSchema = Joi.object({
@@ -66,5 +69,8 @@ export const updateContactSchema = Joi.object({
   contactType: Joi.string().valid('work', 'home', 'personal').messages({
     'string.base': 'Contact type should be a string',
     'any.only': 'Contact type must be one of: work, home, personal',
+  }),
+  photo: Joi.string().allow(null).messages({
+    'string.base': 'Photo should be a string',
   }),
 });
